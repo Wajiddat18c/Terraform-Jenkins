@@ -1,9 +1,26 @@
-variable "Endpoint_Data" {
-  type        = map(string)
+variable "endpoint" {
+  type        = string
   description = "Endpoint for subnetip"
 }
 
-variable "partition_setup_data" {
-  type        = map(string)
-  description = "Data used for creating a new Partition"
+variable "partitionname" {
+  type        = string
+  description = "Partition name for the new partition"
+}
+
+variable "maxbandwidth" {
+  type        = number
+  description = "Max bandwidth for the new partition"
+}
+variable "maxconn" {
+  type        = string
+  description = "Max connections for the new partition"
+}
+variable "maxmemlimit" {
+  type        = string
+  description = "Max memory limit for the new partition"
+}
+variable "vlan" {
+  type        = string
+  description = "VLAN of the new partition"
 }

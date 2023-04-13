@@ -7,7 +7,7 @@ terraform {
 }
 provider "citrixadc" {
 //insert endpoint, username, password 
-  endpoint = var.Endpoint_Data["endpoint"]
+  endpoint = var.endpoint
   username = var.username
   password = var.password
 

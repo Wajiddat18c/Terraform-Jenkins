@@ -10,10 +10,10 @@ variable "password" {
   sensitive = true
 }
 resource "citrixadc_nspartition" "tf_nspartition" {
-  partitionname = var.partition_setup_data["partitionname"]
-  maxbandwidth  = var.partition_setup_data["maxbandwidth"]
-  maxconn       = var.partition_setup_data["maxconn"]
-  maxmemlimit   = var.partition_setup_data["maxmemlimit"]
+  partitionname = var.partitionname
+  maxbandwidth  = var.maxbandwidth
+  maxconn       = var.maxconn
+  maxmemlimit   = var.maxmemlimit
 
       lifecycle {
       prevent_destroy = true
@@ -21,7 +21,7 @@ resource "citrixadc_nspartition" "tf_nspartition" {
 }
 
 resource "citrixadc_vlan" "tf_vlan" {
-    vlanid = var.partition_setup_data["vlan"]
+    vlanid = var.vlan
     aliasname = citrixadc_nspartition.tf_nspartition.partitionname
     mtu = 1500
 
@@ -33,7 +33,8 @@ resource "citrixadc_vlan" "tf_vlan" {
 
 resource "citrixadc_vlan_interface_binding" "tf_bind" {
     vlanid = citrixadc_vlan.tf_vlan.vlanid
-    ifnum = "LA/1"
+    #PROD LA/1
+    ifnum = "0/1"
     tagged = "true"
 
       depends_on = [
@@ -68,7 +69,7 @@ resource "citrixadc_systemgroup" "tf_systemgroup1" {
     
 
     cmdpolicybinding { 
-        policyname = "partition-maintenance"
+        policyname = "partition-operator"
         priority = 110
     }
 
