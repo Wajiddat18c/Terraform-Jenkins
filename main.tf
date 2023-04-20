@@ -50,9 +50,7 @@ resource "citrixadc_systemgroup" "tf_systemgroup" {
         priority = 100
     }
 
-    lifecycle {
-      prevent_destroy = true
-    }
+
 }
 
 resource "citrixadc_systemgroup" "tf_systemgroup1" {
@@ -65,9 +63,7 @@ resource "citrixadc_systemgroup" "tf_systemgroup1" {
         priority = 110
     }
 
-    lifecycle {
-      prevent_destroy = true
-    }
+
 
 }
 
