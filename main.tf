@@ -15,9 +15,6 @@ resource "citrixadc_nspartition" "tf_nspartition" {
   maxconn       = var.maxconn
   maxmemlimit   = var.maxmemlimit
 
-      lifecycle {
-      prevent_destroy = true
-    }
 }
 
 resource "citrixadc_vlan" "tf_vlan" {
@@ -25,9 +22,6 @@ resource "citrixadc_vlan" "tf_vlan" {
     aliasname = citrixadc_nspartition.tf_nspartition.partitionname
     mtu = 1500
 
-        lifecycle {
-      prevent_destroy = true
-    }
 }
  
 
@@ -41,9 +35,7 @@ resource "citrixadc_vlan_interface_binding" "tf_bind" {
     citrixadc_vlan.tf_vlan
   ]
 
-      lifecycle {
-      prevent_destroy = true
-    }
+
 }
 
 
@@ -84,9 +76,7 @@ resource "citrixadc_systemgroup_nspartition_binding" "tf_systemgroup_nspartition
   groupname     = citrixadc_systemgroup.tf_systemgroup.groupname
   partitionname = citrixadc_nspartition.tf_nspartition.partitionname
 
-      lifecycle {
-      prevent_destroy = true
-    }
+
 }
 
 
@@ -94,18 +84,14 @@ resource "citrixadc_systemgroup_nspartition_binding" "tf_systemgroup_nspartition
   groupname     = citrixadc_systemgroup.tf_systemgroup1.groupname
   partitionname = citrixadc_nspartition.tf_nspartition.partitionname
 
-      lifecycle {
-      prevent_destroy = true
-    }
+
 }
 
 resource "citrixadc_systemgroup_nspartition_binding" "tf_systemgroup_nspartition_binding2" {
   groupname     = "g_ncop_lba_prod_partition-infrastructure-service-user"
   partitionname = citrixadc_nspartition.tf_nspartition.partitionname
 
-        lifecycle {
-      prevent_destroy = true
-    }
+
 }
 
 
@@ -114,7 +100,5 @@ resource "citrixadc_nspartition_vlan_binding" "tf_binding" {
   partitionname = citrixadc_nspartition.tf_nspartition.partitionname
   vlan          = citrixadc_vlan.tf_vlan.vlanid
 
-      lifecycle {
-      prevent_destroy = true
-    }
+
 }
